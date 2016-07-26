@@ -1,0 +1,33 @@
+function loadAPIv2()
+{
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?ver=2&key=AIzaSyDo0OhrdCzs9MUFqOqsjWiVHUc9VQkev48';
+        document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function initMapContainer()
+{
+        var mapContainer =  document.createElement('div');
+        //TODO Сделать правильную ширину.
+        mapContainer.setAttribute('style',"width: 500px; height: 300px");
+        document.body.appendChild(mapContainer);
+        return mapContainer;
+}
+
+function initMap(mapContainer, center)
+{
+    var mapOptions = {
+        //center: new google.maps.LatLng(-35.000009, -58.197645),
+        center: center,
+        zoom: 7,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    return new google.maps.Map(mapContainer,mapOptions);
+}
+
+function makeMap (lat, lng)
+{
+    loadAPIv2();
+    return initMap(initMapContainer(), new google.maps.LatLng(lat, lng));
+}
